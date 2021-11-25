@@ -27,9 +27,6 @@ Route::get('/apply/edit/{id}/{estado}', [ApplyController::class, 'edit'])->middl
 Route::get('/apply/toApply', [ApplyController::class, 'create']);
 Route::post('/apply/store', [ApplyController::class, 'store'])->middleware('auth');
 
-Route::get('/login', [LoginController::class, 'index']);
-Route::post('/login/authenticate', [LoginController::class, 'authenticate']);
-
 Auth::routes();
 
 Route::get('/home', [ApplyController::class, 'index'])->name('home');
