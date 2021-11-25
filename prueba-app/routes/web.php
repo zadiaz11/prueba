@@ -22,14 +22,14 @@ Route::get('/gracias', function () {
     return view('gracias');
 });
 
-Route::get('/apply', 'App\Http\Controllers\ApplyController@index');
-Route::get('/apply/edit/{id}/{estado}', [ApplyController::class, 'edit']);
+Route::get('/apply', 'App\Http\Controllers\ApplyController@index')->middleware('auth');
+Route::get('/apply/edit/{id}/{estado}', [ApplyController::class, 'edit'])->middleware('auth');
 Route::get('/apply/toApply', [ApplyController::class, 'create']);
-Route::post('/apply/store', [ApplyController::class, 'store']);
+Route::post('/apply/store', [ApplyController::class, 'store'])->middleware('auth');
 
 Route::get('/login', [LoginController::class, 'index']);
 Route::post('/login/authenticate', [LoginController::class, 'authenticate']);
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', [ApplyController::class, 'index'])->name('home');
