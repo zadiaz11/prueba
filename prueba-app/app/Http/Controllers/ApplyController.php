@@ -10,7 +10,8 @@ class ApplyController extends Controller
 {
     /**
      * Display a listing of the resource.
-     *
+     * Need to be login
+     * @param \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function index(Request $request)
@@ -58,9 +59,10 @@ class ApplyController extends Controller
  
 
     /**
-     * Show the form for editing the specified resource.
+     * Change the state of a Apply the specified resource.
      *
      * @param  int  $id
+     * @param  int  $estado
      * @return \Illuminate\Http\Response
      */
     public function edit($id, $estado)
