@@ -15,7 +15,8 @@ class ApplyController extends Controller
      */
     public function index()
     {
-        $applies=Apply::orderBy('id','DESC')->paginate(3);
+        
+        $applies=Apply::orderBy('id','DESC')->paginate(5);
         return view('Apply.index',compact('applies')); 
     }
 
@@ -26,7 +27,7 @@ class ApplyController extends Controller
      */
     public function create()
     {
-        //
+        return view('Apply.toApply');
     }
 
     /**
@@ -37,7 +38,9 @@ class ApplyController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request,[ 'name'=>'required', 'last_name'=>'required', 'email'=>'required', 'contact'=>'required', 'program'=>'required']);
+        Apply::create($request->all());
+        return redirect('/gracias');
     }
 
     /**

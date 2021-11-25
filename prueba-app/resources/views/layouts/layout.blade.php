@@ -11,6 +11,14 @@
     <title>Apply</title>
   </head>
   <body>
+  <nav class="navbar navbar-light bg-light mb-3">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="/">
+      <img src='/kuepa.png' alt="logo kuepa" width="80" height="24" class="d-inline-block align-text-top">
+  
+    </a>
+  </div>
+</nav>
     
     <div class="container">
 	@yield('content')

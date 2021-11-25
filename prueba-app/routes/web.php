@@ -16,5 +16,12 @@ use App\Http\Controllers\ApplyController;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/gracias', function () {
+    return view('gracias');
+});
+
 Route::get('/apply', 'App\Http\Controllers\ApplyController@index');
 Route::get('/apply/edit/{id}', [ApplyController::class, 'edit']);
+Route::get('/apply/toApply', [ApplyController::class, 'create']);
+Route::post('/apply/store', [ApplyController::class, 'store']);
