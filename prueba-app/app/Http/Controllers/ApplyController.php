@@ -13,11 +13,23 @@ class ApplyController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        
-        $applies=Apply::orderBy('id','DESC')->paginate(5);
-        return view('Apply.index',compact('applies')); 
+        $filter = $request->query('filter');
+
+      
+    
+       
+        $applies = array();
+       
+        if (!empty($filter)) {
+            $applies = Apply::where('applies.name', 'like', '%'.$filter.'%')
+                ->paginate(5);
+        }
+        else {
+            $applies=Apply::orderBy('id','DESC')->paginate(5);
+        }
+        return view('Apply.index',compact('applies'))->with('filter', $filter);; 
     }
 
     /**
