@@ -53,7 +53,13 @@
                                     <td>{{$apply->contact}}</td>
                                     <td>{{$apply->program}}</td>
                                     <td>{{$apply->estado()}}</td>
-                                    <td><a class="btn btn-primary btn-xs" href='{{ url("/apply/edit/{$apply->id}") }}' >Editar</a></td>
+                                    <td>
+                                        @if($apply->estado==100)
+                                        <a class="btn btn-primary btn-sm" href='{{ url("/apply/edit/{$apply->id}/200") }}' >Revisado</a>
+                                        @else
+                                        <a class="btn btn-sm btn-warning" href='{{ url("/apply/edit/{$apply->id}/100") }}' >Pendiente</a>
+                                        @endif
+                                    </td>
                                     <td>
                                         
                                     </td>

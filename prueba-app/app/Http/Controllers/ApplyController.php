@@ -24,10 +24,10 @@ class ApplyController extends Controller
        
         if (!empty($filter)) {
             $applies = Apply::where('applies.name', 'like', '%'.$filter.'%')
-                ->paginate(5);
+                ->orderBy('estado', 'ASC')->paginate(5);
         }
         else {
-            $applies=Apply::orderBy('id','DESC')->paginate(5);
+            $applies=Apply::orderBy('estado','ASC')->paginate(5);
         }
         return view('Apply.index',compact('applies'))->with('filter', $filter);; 
     }
@@ -55,16 +55,7 @@ class ApplyController extends Controller
         return redirect('/gracias');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
+ 
 
     /**
      * Show the form for editing the specified resource.
@@ -72,32 +63,18 @@ class ApplyController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($id, $estado)
     {
-    
+        $apply = Apply::find($id);
+        $apply->estado=$estado;
+        $apply->update();
+        
+        return back()->withInput();
        
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
+   
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        
-    }
+   
+ 
 }

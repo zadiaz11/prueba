@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ApplyController;
+use App\Http\Controllers\LoginController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -22,6 +23,13 @@ Route::get('/gracias', function () {
 });
 
 Route::get('/apply', 'App\Http\Controllers\ApplyController@index');
-Route::get('/apply/edit/{id}', [ApplyController::class, 'edit']);
+Route::get('/apply/edit/{id}/{estado}', [ApplyController::class, 'edit']);
 Route::get('/apply/toApply', [ApplyController::class, 'create']);
 Route::post('/apply/store', [ApplyController::class, 'store']);
+
+Route::get('/login', [LoginController::class, 'index']);
+Route::post('/login/authenticate', [LoginController::class, 'authenticate']);
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
